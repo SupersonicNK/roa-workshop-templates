@@ -1,4 +1,4 @@
-# Automated seasonal skins
+# Automated holiday skins
 
 As of recent updates, it's now possible to get the current season, even from colors.gml. As such you can now *automate the setting of holiday skins* using the following switch statement.
 Simply set up the color as normal from the comment.
