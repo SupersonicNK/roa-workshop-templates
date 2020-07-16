@@ -5,7 +5,7 @@ Simply set up the color as normal from the comment.
 
 Typically, holiday skins are alt 6.
 ```gml
-//colors.gml:
+//colors.gml OR init_shader.gml:
 switch (get_match_setting(SET_SEASON)) {
   case 1: // valentines
     //set your valentines holiday alt
