@@ -24,4 +24,4 @@ switch (get_match_setting(SET_SEASON)) {
 
 Examples of holiday alts (minus Halloween, as that one is based on costumes of various characters instead of following one specific color theme)
 
-![](img\skin_collection.png)
+![](img/skin_collection.png)
