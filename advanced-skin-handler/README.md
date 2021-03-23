@@ -17,7 +17,7 @@ For the most basic of characters/skins, the user event is pretty much plug and p
 ### Installation
 1. [**Download the initialization user event here**](https://github.com/SupersonicNK/roa-workshop-templates/raw/master/advanced-skin-handler/scr/user_event15.gml) (right click the link -> save as). Rename it to any user_event between 0 and 15 that you aren't already using and put it into your `scripts` folder.
 2. At the **bottom** of `load.gml`, insert the following function, replacing the `15` with the number you gave the user event: `user_event(15);`
-3. Copy the portion of text between `//COPY START` and `//COPY END` from the user event to your `animation.gml` file, paste it at the very bottom of the file.
+3. From the user event, copy the portion of text between `//COPY START` and `//COPY END` from the user event to the very **bottom** of your `animation.gml` file. (If `animation.gml` does not exist, create it.)
 4. At the top of `animation.gml`, add the following text:
    ```gml
    if (has_skin()) { //is there a skin equipped?
