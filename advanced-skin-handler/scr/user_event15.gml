@@ -136,18 +136,23 @@ switch (state){
 #define set_skin(skin)
 ///Sets the active skin. You can supply a name or an index.
 var obj = (object_index != oPlayer && object_index != oTestPlayer) ? player_id : id;
-with obj if (is_string(argument[0])) {
-    //_ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
-    var sskin = -1;
-    for (var i = 0; i < array_length(_ssnksprites.skins);i++) {
-        if _ssnksprites.skins[i][0] == skin || _ssnksprites.skins[i][0] == (_ssnksprites.skins[i][1]?"_"+skin:skin+"_") {
-            sskin = i;
-            break;
+with obj {
+    if (is_string(argument[0])) {
+        //_ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
+        var sskin = -1;
+        for (var i = 0; i < array_length(_ssnksprites.skins);i++) {
+            if _ssnksprites.skins[i][0] == skin || _ssnksprites.skins[i][0] == (_ssnksprites.skins[i][1]?"_"+skin:skin+"_") {
+                sskin = i;
+                break;
+            }
         }
+        if sskin != -1 _ssnksprites.skin_active = sskin;
+        else print(`Skin ${skin} not found.`);
+    } else if (is_number(argument[0])) {
+        
+        if (_ssnksprites.skin_active >= array_length(_ssnksprites.skins)) print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins)-1}] inclusive. (-1 to disable skin.)`);
+        else _ssnksprites.skin_active = skin;
     }
-    _ssnksprites.skin_active = sskin;
-} else if (is_number(argument[0])) {
-    _ssnksprites.skin_active = skin;
 }
 
 #define get_skin()

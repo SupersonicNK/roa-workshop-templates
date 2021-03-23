@@ -31,6 +31,13 @@ For this, we'll assume you want your skin to be on alt number 15, for ease of ex
 
 Important things to note: You **cannot** set the skin from `init.gml`, but you **can** from `load.gml`, the user event, or any other script that runs after `init.gml` such as `update.gml`, the `attacks` folder, etc. This is because of the order the scripts run in. `load.gml` runs after `init.gml`, and the user_event has to be in `load.gml` because it needs to access the offsets defined in it. So for this, we'll just use the user event to set the skin.
 
+The area I recommend *defining* your skin in is the section labeled SKIN DEFINITION.
+To define a skin, use the add_skin function as follows, where myskin is the name of the skin:
+```gml
+add_skin("myskin")
+```
+This will add the skin to the skin list, allowing it to be used.
+
 There is a simple example present in the user event, but I'll still detail it here. Somewhere below the `precache();` function in the POST DEFINITION section, place the following code.
 ```gml
 if (get_player_color(player) == 15) set_skin("myskin");
