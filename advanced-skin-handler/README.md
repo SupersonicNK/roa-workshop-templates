@@ -37,4 +37,12 @@ if (get_player_color(player) == 15) set_skin("myskin");
 ```
 This first checks the palette the player has equipped. In this case, we picked **15**, which is the **16th** palette. If the player has the 16th palette equipped, then it sets their skin to the skin `myskin`.
 
-   
+### Skinning Sprites
+Once you've got the skin equippable as per the section above, now you just need to ensure that your files are named correctly! The naming convention is as follows:
+
+`skinname_spritename`. So, in the case of our example, one sprite may be `myskin_idle`, with a filename of `myskin_idle_strip6.png`.
+
+If the file is named correctly according to the skin, it should automatically load the skinned sprite. Otherwise, it'll load the default sprite instead.
+
+## Advanced Setup
+TODO.
