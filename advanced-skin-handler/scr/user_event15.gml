@@ -132,8 +132,16 @@ switch (state){
 }
 
 #define set_skin(skin)
+///Sets the active skin. You can supply a name or an index.
 if (is_string(argument[0])) {
-    _ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
+    //_ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
+    var skin = -1;
+    for (var i = 0; i < array_length(_ssnksprites.skins);i++) {
+        if _ssnksprites.skins[i][0] == skin || _ssnksprites.skins[i][0] == (ssnk_sprites.skins[i][1]?skin+"_":"_"+skin) {
+            skin = i; 
+            break;
+        }
+    }
 } else if (is_number(argument[0])) {
     _ssnksprites.skin_active = skin;
 }
