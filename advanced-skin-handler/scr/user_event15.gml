@@ -62,7 +62,8 @@ precache(); // Cache skins while loading to ensure max performance during match
 //COPY START
 #define sprite_get_skinned(sprite)
 ///Gets a skinned sprite based on its name.
-if _ssnksprites.skin_active != -1  {
+var obj = (object_index != oPlayer && object_index != oTestPlayer) ? player_id : id;
+with obj if _ssnksprites.skin_active != -1  {
     var cache = variable_instance_get(_ssnksprites.cache,_ssnksprites.skins[_ssnksprites.skin_active][0], -1);
     var spr;
     if sprite in cache return variable_instance_get(cache,sprite);
@@ -90,7 +91,8 @@ return sprite_get(sprite);
 #define skin_sprite(spr_index)
 ///Gets a skinned sprite by its unskinned sprite index.
 var str = `${spr_index}`;
-if (_ssnksprites.skin_active != -1)  {
+var obj = (object_index != oPlayer && object_index != oTestPlayer) ? player_id : id;
+with obj if (_ssnksprites.skin_active != -1)  {
     var cache = variable_instance_get(_ssnksprites.cache,_ssnksprites.skins[_ssnksprites.skin_active][0], -1);
     if (str in cache) return variable_instance_get(cache,str);
     if (str in _ssnksprites.names) {
@@ -133,7 +135,8 @@ switch (state){
 
 #define set_skin(skin)
 ///Sets the active skin. You can supply a name or an index.
-if (is_string(argument[0])) {
+var obj = (object_index != oPlayer && object_index != oTestPlayer) ? player_id : id;
+with obj if (is_string(argument[0])) {
     //_ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
     var sskin = -1;
     for (var i = 0; i < array_length(_ssnksprites.skins);i++) {
@@ -149,10 +152,16 @@ if (is_string(argument[0])) {
 
 #define get_skin()
 ///Gets the active skin. -1 when no skin is active.
+if object_index != oPlayer && object_index != oTestPlayer {
+    return player_id._ssnksprites.skin_active;
+}
 return _ssnksprites.skin_active;
 
 #define has_skin()
 ///Shortcut for get_skin() != -1.
+if object_index != oPlayer && object_index != oTestPlayer {
+    return player_id._ssnksprites.skin_active != -1;
+}
 return _ssnksprites.skin_active != -1;
 
 //COPY END
