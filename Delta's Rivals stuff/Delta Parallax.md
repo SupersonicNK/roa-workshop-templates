@@ -24,19 +24,10 @@ draw_sprite_ext(sprite_index, image_index, x, y, spr_dir, image_yscale, 0, c_whi
 You can also try this out with radial light. I have created a function here that creates a radial glow around a point, with a certain radius, center and edge color (c1 and c2, respectively), alpha, and precision (I recommend >30 for the precision, any less and it'll just become a bunch of triangles).
 *Note: This might lag on older computers.*
 ```
-#define draw_glow(x, y, r, c1, c2, a, precision)
-
-var cx, cy, r, col1, col2, alpha1, precision;
-cx=argument0;
-cy=argument1;
-r=argument2;
-col1 = argument3;
-col2 = argument4;
-alpha1 = argument5;
-precision = argument6;
+#define draw_glow(cx, cy, r, col1, col2, alpha, precision)
 
 draw_primitive_begin(pr_trianglefan);
-draw_vertex_color(cx, cy, col1, alpha1);
+draw_vertex_color(cx, cy, col1, alpha);
 var incre = (2*pi) / abs(precision);
 
 for (var i = 0; i <= 2*pi; i+=incre)
