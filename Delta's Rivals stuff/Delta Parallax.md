@@ -99,9 +99,8 @@ In Rivals, we have two types of parrystun which are used depending on the attack
 Both of these cover (and work well for) a wide range of scenarios, but unfortunately, they don't fit every case. What if you want base parrystun in addition to extended parrystun?
 
 Here is a simple function for custom parrystun for use in `scripts/got_parried.gml`.
-After putting this at the bottom of your script, you can use it by calling `custom_parrystun()`. If any argument is not supplied, it will use a default value.
+After putting this at the bottom of your script, you can use it by calling `custom_parrystun(base, mult)`. If any argument is not supplied, it will use a default value -- `custom_parrystun()` will just use `40` and `0.08` for the base and multiplier respectively.
 
-You can change the base and the multiplier for different results.
 ```gml
 #define custom_parrystun
 var base, multiplier, distance, extended;
