@@ -54,7 +54,7 @@ gpu_set_blendmode(bm_add);
 //Draw the glow
 var precision;
 precision = (position-0.5)*40;
-draw_glow(x, y, 15+(position*20), c_white, c_white, position*image_alpha, precision)
+draw_glow(x, y, 15+(position*20), c_white, c_white, position*image_alpha, precision);
 
 //Reset
 gpu_set_blendmode(blend);
