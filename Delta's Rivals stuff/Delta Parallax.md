@@ -112,7 +112,7 @@ After putting this at the bottom of your script, you can use it by calling `cust
 
 You can change the base and the multiplier for different results.
 ```
-#def custom_parrystun(base,multiplier)
+#define custom_parrystun
 var base, multiplier, distance, extended;
 
 //Some base number, applied regardless of distance
