@@ -43,6 +43,7 @@ There is a simple example present in the user event, but I'll still detail it he
 if (get_player_color(player) == 15) set_skin("myskin");
 ```
 This first checks the palette the player has equipped. In this case, we picked **15**, which is the **16th** palette. If the player has the 16th palette equipped, then it sets their skin to the skin `myskin`.
+
 If you want to enable a skin from another script, find the `#define set_skin` in `user_event15.gml` (or whatever user event you renamed the skin handler to), and copy it to the script you'd like to use it in. Then you can call set_skin from another script. 
 
 ### Skinning Sprites
