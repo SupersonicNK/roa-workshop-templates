@@ -92,4 +92,4 @@ You can apply a hitbox color the same way you would apply a hitbox's other value
 
 `set_hitbox_value(AT_DAIR, 2, HG_HITBOX_COLOR, $FFFF00);`
 
-As a quick heads up, GML uses the format BGR instead of RGB, so the color the above code makes is Cyan, rather than Magenta.
+As a quick heads up, GML uses the format BGR instead of RGB, so the color the above code makes is Cyan, rather than Yellow.
