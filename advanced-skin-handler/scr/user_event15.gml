@@ -1,6 +1,6 @@
 /*
         Supersonic's Advanced Skin Handler
-        v1.1
+        v1.2
         Check here for more info:
         https://github.com/SupersonicNK/roa-workshop-templates/tree/master/advanced-skin-handler
 */
@@ -77,19 +77,24 @@ with obj if (_ssnksprites.skin_active != -1 || argument_count > 1)  {
         else print(`Skin ${skin} not found.`);
     }
     if !is_array(skindata) return sprite_get(sprite);
-    var skinname = skindata[0], suffix = skindata[1];
-    var cache = variable_instance_get(_ssnksprites.cache,skinname, -1);
+    var skinname = skindata[0];
+    var suffix = skindata[1];
+    var name_raw = skindata[2];
+    var cache = variable_instance_get(_ssnksprites.cache,name_raw, -1);
     var spr;
     if sprite in cache return variable_instance_get(cache,sprite);
     spr = sprite_get(sprite);
-    var sprname = suffix? //if suffix
-                    sprite+skinname: //suffix
-                    skinname+sprite;//prefix
+    
     if string(spr) in _ssnksprites.names {
-        var sproot = sprite_get(`${sprname}`); 
+        var sproot = sprite_get(`${suffix? //if suffix
+                                    sprite+skinname: //suffix
+                                    skinname+sprite}`); //prefix
         if sproot == asset_get('net_disc_spr') { //no X allowed
             variable_instance_set(cache,sprite,spr);
             return spr;
+        }
+        if sprite_get_xoffset(sproot) == 0 && sprite_get_yoffset(sproot) == 0 {
+            sprite_change_offset(sproot,sprite_get_xoffset(spr),sprite_get_yoffset(spr));
         }
         variable_instance_set(cache,sprite,sproot); //put sprite in cache
         return sproot;
@@ -114,19 +119,26 @@ with obj if (_ssnksprites.skin_active != -1 || argument_count > 1)  {
         else print(`Skin ${skin} not found.`);
     } else if is_number(skin) {
         if skin < array_length(_ssnksprites.skins_n) && skin >= 0 skindata = _ssnksprites.skins_n[skin];
-        else print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins_n)-1}] inclusive.`);
+        else print(`Skin #${skin} out of bounds.`);
     }
     if !is_array(skindata) return(spr_index);
-    var skinname = skindata[0], suffix = skindata[1];
-    var cache = variable_instance_get(_ssnksprites.cache,skinname, -1);
+    var skinname = skindata[0];
+    var suffix = skindata[1];
+    var name_raw = skindata[2];
+    var cache = variable_instance_get(_ssnksprites.cache,name_raw, -1);
     if (str in cache) return variable_instance_get(cache,str);
     if (str in _ssnksprites.names) {
         var sprname = variable_instance_get(_ssnksprites.names,str);
-        var sprname_f = suffix ? sprname+skinname : skinname+sprname
-        var sproot = sprite_get(`${sprname_f}`); 
+        //var sproot = sprite_get(`${variable_instance_get(_ssnksprites.names,str)+_ssnksprites.skins[_ssnksprites.skin_active]}`);
+        var sproot = sprite_get(`${suffix? //if suffix
+                                    sprname+skinname: //suffix
+                                    skinname+sprname}`); //prefix
         if sproot == asset_get('net_disc_spr') { //no X allowed
             variable_instance_set(cache,str,spr_index);
             return spr;
+        }
+        if sprite_get_xoffset(sproot) == 0 && sprite_get_yoffset(sproot) == 0 {
+            sprite_change_offset(sproot,sprite_get_xoffset(spr_index),sprite_get_yoffset(spr_index));
         }
         variable_instance_set(cache,str,sproot); //put sprite in cache
         return sproot;
@@ -164,7 +176,8 @@ with obj {
         if argument[0] in _ssnksprites.skins _ssnksprites.skin_active = sskin;
         else print(`Skin ${skin} not found.`);
     } else if (is_number(argument[0])) {
-        if (_ssnksprites.skin_active >= array_length(_ssnksprites.skins_n)) print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins_n)-1}] inclusive. (-1 to disable skin.)`);
+        
+        if (_ssnksprites.skin_active >= array_length(_ssnksprites.skins)) print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins)-1}] inclusive. (-1 to disable skin.)`);
         else _ssnksprites.skin_active = skin;
     }
 }
@@ -220,7 +233,7 @@ var arr_len = array_length(variable_instance_get_names(_ssnksprites.skins));
 /*
 _ssnksprites.skins[arr_len] = [suffix ? "_"+name : name+"_", suffix];
 */
-var arr = [(suffix ? "_"+name : name+"_"), suffix]; //put into a variable to allow for direct reference in both locations
+var arr = [(suffix ? "_"+name : name+"_"), suffix, name]; //put into a variable to allow for direct reference in both locations
 variable_instance_set(_ssnksprites.skins, name, arr);
 array_push(_ssnksprites.skins_n, arr); 
 variable_instance_set(_ssnksprites.cache, name, {});
@@ -267,8 +280,11 @@ repeat(sprites_len) {
     var str = `${index}`;
     var i = 0;
     repeat (skins_len) { //repeat is slightly more efficient than for
-        cur_skin = variable_instance_get(skins,skinnames[i++]);
-        cur_cache = variable_instance_get(_ssnksprites.cache,cur_skin[0], -1);
+        cur_skin_raw = skinnames[i++];
+        cur_skin = variable_instance_get(skins,cur_skin_raw);
+        //print(cur_skin);
+        cur_cache = variable_instance_get(_ssnksprites.cache,cur_skin_raw, -1);
+        //print(cur_cache);
         
         var skinned_spr = sprite_get(`${cur_skin[1]?name+cur_skin[0]:cur_skin[0]+name}`);
         if skinned_spr == asset_get('net_disc_spr') skinned_spr = index; //no X allowed

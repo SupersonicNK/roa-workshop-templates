@@ -73,6 +73,9 @@ TODO.
 
 ## Change History
 
+- 1.2:
+  - Fixed caching. No longer erroneously caches into the player object.
+
 - 1.1:
   - You may now supply `sprite_get_skinned` and `skin_sprite` with a second argument, `skin`, which may be a skin's name or index.
   - Changed how skins are stored slightly to match how sprite names are stored, removing the requirement for a loop when getting a skin's data by name.
