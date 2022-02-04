@@ -280,7 +280,7 @@ repeat(sprites_len) {
     var str = `${index}`;
     var i = 0;
     repeat (skins_len) { //repeat is slightly more efficient than for
-        cur_skin_raw = skinnames[i++];
+        var cur_skin_raw = skinnames[i++];
         cur_skin = variable_instance_get(skins,cur_skin_raw);
         //print(cur_skin);
         cur_cache = variable_instance_get(_ssnksprites.cache,cur_skin_raw, -1);
