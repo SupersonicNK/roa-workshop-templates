@@ -36,7 +36,7 @@ For the most basic of characters/skins, the user event is pretty much plug and p
 
 ### Enabling your skin
 
-For this, we'll assume you want your skin to be on alt number 15, for ease of explanation. 
+For this, we'll assume you want your skin to be on alt number 15, for ease of explanation.
 
 Important things to note: You **cannot** set the skin from `init.gml`, but you **can** from `load.gml`, the user event, or any other script that runs after `init.gml` such as `update.gml`, the `attacks` folder, etc. This is because of the order the scripts run in. `load.gml` runs after `init.gml`, and the user_event has to be in `load.gml` because it needs to access the offsets defined in it. So for this, we'll just use the user event to set the skin.
 
@@ -57,7 +57,7 @@ if (get_player_color(player) == 15) set_skin("myskin");
 
 This first checks the palette the player has equipped. In this case, we picked **15**, which is the **16th** palette. If the player has the 16th palette equipped, then it sets their skin to the skin `myskin`.
 
-If you want to enable a skin from another script, find the `#define set_skin` in `user_event15.gml` (or whatever user event you renamed the skin handler to), and copy it to the script you'd like to use it in. Then you can call set_skin from another script. 
+If you want to enable a skin from another script, find the `#define set_skin` in `user_event15.gml` (or whatever user event you renamed the skin handler to), and copy it to the script you'd like to use it in. Then you can call set_skin from another script.
 
 ### Skinning Sprites
 
