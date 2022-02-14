@@ -73,6 +73,9 @@ TODO.
 
 ## Change History
 
+- 1.3:
+  - Fixed set_skin just straight up not working. My bad.
+
 - 1.2:
   - Fixed caching. No longer erroneously caches into the player object.
 

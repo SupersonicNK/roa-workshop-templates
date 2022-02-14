@@ -1,6 +1,6 @@
 /*
         Supersonic's Advanced Skin Handler
-        v1.2
+        v1.3
         Check here for more info:
         https://github.com/SupersonicNK/roa-workshop-templates/tree/master/advanced-skin-handler
 */
@@ -173,11 +173,13 @@ with obj {
     if (is_string(argument[0])) {
         //_ssnksprites.skin_active = array_find_index(_ssnksprites.skins,skin);
         var sskin = -1;
-        if argument[0] in _ssnksprites.skins _ssnksprites.skin_active = sskin;
+        if argument[0] in _ssnksprites.skins {
+            _ssnksprites.skin_active = variable_instance_get(_ssnksprites.skins, argument[0])[@3];
+        }
         else print(`Skin ${skin} not found.`);
     } else if (is_number(argument[0])) {
         
-        if (_ssnksprites.skin_active >= array_length(_ssnksprites.skins)) print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins)-1}] inclusive. (-1 to disable skin.)`);
+        if (_ssnksprites.skin_active >= array_length(_ssnksprites.skins_n)) print(`${skin} is out of bounds of the skin array. [0..${array_length(_ssnksprites.skins_n)-1}] inclusive. (-1 to disable skin.)`);
         else _ssnksprites.skin_active = skin;
     }
 }
@@ -233,7 +235,7 @@ var arr_len = array_length(variable_instance_get_names(_ssnksprites.skins));
 /*
 _ssnksprites.skins[arr_len] = [suffix ? "_"+name : name+"_", suffix];
 */
-var arr = [(suffix ? "_"+name : name+"_"), suffix, name]; //put into a variable to allow for direct reference in both locations
+var arr = [(suffix ? "_"+name : name+"_"), suffix, name, arr_len]; //put into a variable to allow for direct reference in both locations
 variable_instance_set(_ssnksprites.skins, name, arr);
 array_push(_ssnksprites.skins_n, arr); 
 variable_instance_set(_ssnksprites.cache, name, {});
@@ -280,7 +282,7 @@ repeat(sprites_len) {
     var str = `${index}`;
     var i = 0;
     repeat (skins_len) { //repeat is slightly more efficient than for
-        cur_skin_raw = skinnames[i++];
+        var cur_skin_raw = skinnames[i++];
         cur_skin = variable_instance_get(skins,cur_skin_raw);
         //print(cur_skin);
         cur_cache = variable_instance_get(_ssnksprites.cache,cur_skin_raw, -1);
