@@ -7,7 +7,7 @@
 - Adds the knockback arrow to projectiles
 
 **Note:** This system does not currently support custom hitbox shapes.
-I will be attempting to implement them in the near future.
+I will be attempting to implement them in the future.
 
 ## Installation
 
