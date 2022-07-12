@@ -81,7 +81,7 @@ if get_match_setting(SET_HITBOX_VIS) {
     if arr_len > 0 {
         selection_sort_priority(hitboxes);
         for (var i = 0; i < arr_len; i++) with hitboxes[i] {
-            draw_sprite_ext(draw_spr, shape, x, y, image_xscale,image_yscale,0,col,0.5);
+            draw_sprite_ext(draw_spr, shape, x, y, image_xscale,image_yscale,image_angle,col,0.5);
             __kb_angle = kb_angle == 361 ? 45 : kb_angle;
             angle = ((__kb_angle+90)*(hit_flipper==5?-1:1)*spr_dir)-90
             draw_sprite_ext(arrowspr, 0, x, y, 1,1,angle,-1,0.5);
