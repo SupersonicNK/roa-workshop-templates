@@ -5,6 +5,7 @@ Templates and Guides for the Rivals of Aether workshop. (heavily work in progres
 - [Colored Hitboxes (via code)](https://github.com/SupersonicNK/roa-workshop-templates/tree/master/colored-hitboxes)
 - [Advanced Skin Handler](https://github.com/SupersonicNK/roa-workshop-templates/tree/master/advanced-skin-handler)
 - [generate/split_synced_var()](https://github.com/SupersonicNK/roa-workshop-templates/tree/master/generate-synced-var)
+- [CSS CPU Toggle Helper](https://github.com/SupersonicNK/roa-workshop-templates/tree/master/css-cpu-hover)
 - [Tips from Delta Parallax](https://github.com/SupersonicNK/roa-workshop-templates/blob/master/Delta's%20Rivals%20stuff/Delta%20Parallax.md)
 
 ## Snippets
