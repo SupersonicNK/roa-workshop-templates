@@ -1,6 +1,8 @@
 # Supersonic's CSS CPU Toggle Helper
 
-![using the toggle helper to set Keqing's toggles.](img/keqing-demo.gif)
+<p align="center"> 
+    <img src="img/keqing-demo.gif"></img>
+</p>
 
 [(Keqing Mod by Bar-Kun.)](https://steamcommunity.com/sharedfiles/filedetails/?id=2786885695)
 
