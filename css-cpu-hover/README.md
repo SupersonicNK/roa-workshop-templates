@@ -1,6 +1,7 @@
 # Supersonic's CSS CPU Toggle Helper
 
 ![using the toggle helper to set Keqing's toggles.](img/keqing-demo.gif)
+
 [(Keqing Mod by Bar-Kun.)](https://steamcommunity.com/sharedfiles/filedetails/?id=2786885695)
 
 ## Features
