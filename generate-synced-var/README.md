@@ -31,7 +31,7 @@ This was made to reduce the amount of binary required, and also make inter-op of
         print(`error generating synced var - bit length surpassed 32! (${total_len} bits.)`);
         return 0;
     }
-    return output;
+    return real(output);
     ```
 
 2. Figure out how many bits the highest value you want to store can use for each chunk. This is the "bit length" of the chunk.
