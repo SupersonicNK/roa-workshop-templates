@@ -7,7 +7,7 @@
     https://github.com/SupersonicNK/roa-workshop-templates/tree/master/generate-synced-var
 */
 #macro DBG_PREFIX "[TAGPAL] "
-#macro VERBOSE true
+#macro VERBOSE false
 __run_script();
 
 #define define_colors() 
