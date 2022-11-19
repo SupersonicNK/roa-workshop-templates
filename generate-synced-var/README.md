@@ -59,6 +59,7 @@ This was made to reduce the amount of binary required, and also make inter-op of
     ///args chunk_lengths...
     var num_chunks = argument_count;
     var chunk_arr = array_create(argument_count);
+    var player = (room == 113) ? 0 : self.player;
     var synced_var = get_synced_var(player);
     var chunk_offset = 0
     for (var i = 0; i < num_chunks; i++) {
