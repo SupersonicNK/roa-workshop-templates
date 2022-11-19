@@ -107,6 +107,7 @@
     // This is your final alt value, which is the current alt palette the player has selected.
     var real_alt = tag_pal != -1 ? tag_pal : alt_cur;
 
+    // As usual, #defines all go at the bottom of the script.
     #define player_tag_palettes
     ///(user_event, ?arg)
     __ssnk_tagpal_scr = script_get_name(1);
