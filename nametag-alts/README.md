@@ -91,9 +91,10 @@
 
     This allows it to draw the CSS button, located directly next to the player's nametag when a valid name is entered.
 
-6. In `init_shader.gml`, add the following code: 
+6. In `init_shader.gml`, add the following code:
 
     ```gml
+    // This code should go to the TOP of the script.
     // The current alt palette, with a fix for the online CSS.
     var alt_cur = get_player_color((room == 113 && object_index != oTestPlayer) ? 0 : player);
 
