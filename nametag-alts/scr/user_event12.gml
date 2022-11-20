@@ -27,7 +27,7 @@ __run_script();
 */
     with (ssnk_tagpal) {
         // How many shade slots the character has. This helps prevent a possible crash.
-        shade_count = 4; 
+        shade_count = 8; 
         // Sounds for enabling and disabling the tag palette.
         confirm_snd = asset_get("mfx_confirm");
         cancel_snd = asset_get("mfx_back");
