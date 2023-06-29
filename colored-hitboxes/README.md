@@ -91,7 +91,11 @@ draw_colored_hitboxes();
         //hide base hurtbox display
         hurtboxID.image_alpha = 0;
         //redraw hurtbox OVER hitbox display for visibility
-        draw_sprite_ext(hurtboxID.sprite_index, hurtboxID.image_index, x, y, 1, 1, 0, -1, 0.5)
+        if state_cat == SC_HITSTUN { //turn hurtbox yellow
+            gpu_set_fog(true, c_yellow, 0, 999)
+        }
+        draw_sprite_ext(hurtboxID.sprite_index, hurtboxID.image_index, x, y, hurtboxID.image_xscale, hurtboxID.image_yscale, 0, -1, 0.5)
+        gpu_set_fog(false, c_white, 0, 999)
     }
 }
 #define selection_sort_priority(arr)
