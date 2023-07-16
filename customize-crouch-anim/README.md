@@ -1,8 +1,6 @@
 # Customizable Crouch Startup/Recovery
 
-<p align="center"> 
-    <video src="media/tester-demo.mp4" type="video/mp4"/></video>
-</p>
+https://github.com/SupersonicNK/roa-workshop-templates/assets/63344191/e556ebd5-f95f-4b40-9022-8013dbe5af68
 
 ## Features
 
