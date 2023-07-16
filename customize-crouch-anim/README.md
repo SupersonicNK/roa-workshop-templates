@@ -2,6 +2,8 @@
 
 https://github.com/SupersonicNK/roa-workshop-templates/assets/63344191/e556ebd5-f95f-4b40-9022-8013dbe5af68
 
+character used in demo: [Tester (by Bar-Kun)](https://steamcommunity.com/sharedfiles/filedetails/?id=2859046287&searchtext=tester)
+
 ## Features
 
 - Customize duration of crouch startup and recovery animations.
