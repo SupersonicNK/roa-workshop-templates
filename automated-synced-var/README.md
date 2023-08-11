@@ -11,7 +11,7 @@ Well... MOSTLY automated.
 
 ## Installation
 
-1. Put the [user event](scr/user_event5.gml) into your `scripts/` folder.
+1. Put the [user event](https://raw.githubusercontent.com/SupersonicNK/roa-workshop-templates/master/automated-synced-var/scr/user_event5.gml) into your `scripts/` folder.
 2. In `css_update.gml`, near the bottom of the file but above any `#defines`, call the user event.  
     ( By default, this would be `user_event(5)` ).
 3. In `init.gml`, near the top of the file, call the user event again.
