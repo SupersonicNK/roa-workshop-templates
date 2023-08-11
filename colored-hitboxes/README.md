@@ -48,7 +48,7 @@ prep_hitboxes();
 #define prep_hitboxes
 //Applies the hitbox sprites and prepares them to be drawn (with color!)
 with (pHitBox) if player_id == other {
-    if "col" not in self {
+    if ("col" not in self && "dont_color" not in self) {
         with other {
             other.col = get_hitbox_value(other.attack, other.hbox_num, HG_HITBOX_COLOR);
             if other.col == 0 other.col = c_red;
