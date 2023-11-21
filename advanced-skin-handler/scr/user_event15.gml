@@ -28,7 +28,7 @@ add_sprites("bair","dair","dattack","dspecial","dstrong","dtilt","fair","fspecia
 //=================OTHER=================
 //  hurt sprites
 add_sprites("hurt","bouncehurt","hurtground","spinhurt","uphurt","downhurt");
-
+// NOTE: Please remove any hurt sprites that your character does not use, as sprite_get does weird stuff with these.
 
 //============SKIN DEFINITION============
 //
