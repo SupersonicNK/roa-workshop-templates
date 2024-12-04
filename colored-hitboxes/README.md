@@ -47,7 +47,7 @@ prep_hitboxes();
 //Put this at the very bottom of the script, with the rest of your #defines.
 #define prep_hitboxes
 //Applies the hitbox sprites and prepares them to be drawn (with color!)
-with (pHitBox) if orig_player_id == other {
+with (pHitBox) if orig_player_id == other && orig_player == other.player {
     if ("col" not in self && "dont_color" not in self) {
         with other {
             other.col = get_hitbox_value(other.attack, other.hbox_num, HG_HITBOX_COLOR);
@@ -77,7 +77,7 @@ draw_colored_hitboxes();
 {
     if get_match_setting(SET_HITBOX_VIS) {
         var arrowspr = __kb_arrow_spr, hitboxes = [], arr_len, __kb_angle, angle;
-        with (pHitBox) if (orig_player_id == other && draw_colored) array_push(hitboxes,self)
+        with (pHitBox) if (orig_player_id == other && orig_player == other.player && draw_colored) array_push(hitboxes,self)
         arr_len = array_length(hitboxes);
         if arr_len > 0 {
             selection_sort_priority(hitboxes);
