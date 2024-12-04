@@ -83,6 +83,10 @@
                 cursor_id = cs[@hplayer];
             }
         }
+    } else {
+        cpu_is_hovered = false;
+        cpu_hover_time = 0;
+        cursor_id = cursors[player];
     }
 
     #define get_new_hovering_player()
