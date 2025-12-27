@@ -222,7 +222,7 @@ for (var i = array_length(k)-1; i >= 0; i--) {
 	output = output | val;
 	output = output << shift;
 }
-if set set_synced_var(d.plr, output)
+if set set_synced_var(d.plr, floor(output))
 return output
 #define read_synced_var
 var d = get_data_var();
