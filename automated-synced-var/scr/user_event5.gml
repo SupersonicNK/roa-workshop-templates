@@ -117,7 +117,7 @@ switch(context) {
 			print_verbose("Player is in playtest, syncing to cs_playerbg_obj instance.")
 			with (d.css_obj) {
 				if datavar_name not in self continue; // object doesn't have data var, ignore it.
-				if __synced_var_data.player == d.plr { // compare data var's player to css object's player
+				if __synced_var_data.plr == d.plr { // compare data var's player to css object's player
 					other.__synced_var_data = __synced_var_data;
 					other.synced_var = synced_var;
 					__synced_var_data.playtest = true;
