@@ -23,15 +23,17 @@ Anyway.
 
 1. Back up your `css_init.gml`, `css_draw.gml`, and `css_update.gml` if you already have them.
 
-2. Copy the scripts provided in the [scripts folder](./scripts/) to your character's scripts folder.
+2. Download the assets from [my Drive folder](https://drive.google.com/drive/folders/1EpBjMkU82sAMSsO9L7TutQYHnQgvkR9r?usp=sharing), or from here on GitHub, though the files were provided on drive for convenience.
 
-3. In `css_draw.gml` and `css_update.gml`, copy the code from your original `css_draw.gml` and `css_update.gml` into `case 0:` of the switch statements in the new code. If you did not already have any css scripts, skip to step 5.
+3. Copy the scripts provided in the scripts folder to your character's scripts folder.
 
-4. In `css_init.gml`, copy your original `css_init.gml` code to the bottom of the script.
+4. In `css_draw.gml` and `css_update.gml`, copy the code from your original `css_draw.gml` and `css_update.gml` into `case 0:` of the switch statements in the new code. If you did not already have any css scripts, skip to step 5.
 
-5. Copy the sprites provided in the [sprites folder](./sprites/) to your character's sprites folder.
+5. In `css_init.gml`, copy your original `css_init.gml` code to the bottom of the script.
 
-6. Edit `css_infobox_preview.png` to a 2x crop of your character within the given dimensions. Although, what you use here doesn't actually matter. Do what you like!
+6. Copy the sprites provided in the sprites folder to your character's sprites folder.
+
+7. Edit `css_infobox_preview.png` to a 2x crop of your character within the given dimensions. Although, what you use here doesn't actually matter. Do what you like!
 
 ## Usage
 
