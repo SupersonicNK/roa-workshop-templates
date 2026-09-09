@@ -12,8 +12,8 @@ The format for this function is:
 `spawn_base_dust(x, y, name, direction)`, with `direction` being optional. 
 If not supplied, it will spawn the dust facing the direction the player is facing.
 ## Examples:
-`spawn_base_dust(x, y, "jump");` - spawns the jump dust at your current x and y, in the direction you're facing.
-`spawn_base_dust(x, y, "dash", -1);` - spawns the dash just at your x and y position, facing left.
+`spawn_base_dust(x, y, DFX_JUMP);` - spawns the jump dust at your current x and y, in the direction you're facing.
+`spawn_base_dust(x, y, DFX_DASH, -1);` - spawns the dash just at your x and y position, facing left.
 
 ## Function:
 Copy and paste this **at the bottom of the files you want to use the function in, below your character's own code**. 
@@ -21,34 +21,72 @@ Anything below a #define is considered part of that function until it hits anoth
 that they are put at the bottom of the file.
 ```gml
 #define spawn_base_dust
-///spawn_base_dust(x, y, name, ?dir)
-//This function spawns base cast dusts. Names can be found below.
-var dlen; //dust_length value
-var dfx; //dust_fx value
-var dfg; //fg_sprite value
-var dfa = 0; //draw_angle value
-var dust_color = 0;
-var x = argument[0], y = argument[1], name = argument[2];
-var dir = argument_count > 3 ? argument[3] : 0;
-
-switch (name) {
-    default: 
-    case "dash_start":dlen = 21; dfx = 3; dfg = 2626; break;
-    case "dash": dlen = 16; dfx = 4; dfg = 2656; break;
-    case "jump": dlen = 12; dfx = 11; dfg = 2646; break;
-    case "doublejump": 
-    case "djump": dlen = 21; dfx = 2; dfg = 2624; break;
-    case "walk": dlen = 12; dfx = 5; dfg = 2628; break;
-    case "land": dlen = 24; dfx = 0; dfg = 2620; break;
-    case "walljump": dlen = 24; dfx = 0; dfg = 2629; dfa = dir != 0 ? -90*dir : -90*spr_dir; break;
-    case "n_wavedash": dlen = 24; dfx = 0; dfg = 2620; dust_color = 1; break;
-    case "wavedash": dlen = 16; dfx = 4; dfg = 2656; dust_color = 1; break;
+///spawn_base_dust(x, y, dust_fx, ?dir)
+///Spawns a base game dust effect with its usual parameters.
+if (hitpause) return noone; // Dust effects do funky things in hitpause for some reason
+var x = argument[0], y = argument[1], dfx = argument[2], dir = argument_count > 3 && argument[3] != 0 ? argument[3] : spr_dir;
+var dust = spawn_dust_fx(x, y, asset_get("empty_sprite"), 24);
+with (dust) {
+    dust_fx = dfx; dust_color = 0; spr_dir = dir;
+    switch (dfx) {
+        case DFX_LAND: case DFX_LAND_BIG: break;
+        case DFX_DOUBLE_JUMP: case DFX_DASH_START: case DFX_DOUBLE_JUMP_SMALL:
+            dust_length = 21; break;
+        case DFX_DASH: dust_length = 16; break;
+        case DFX_WALK: dust_length = 12; break;
+        case DFX_TECH: case DFX_TECH_BIG: 
+            dust_length = 18; dust_color = 1; break;
+        case DFX_HIT_SURFACE: case DFX_HIT_SURFACE_SMALL:    
+            dust_length = 10; dust_color = 0; break;
+        case DFX_HIT_SURFACE_FG: case DFX_HIT_SURFACE_SMALL_FG: 
+            dust_length = 15; dust_color = 1; break;
+        case DFX_PARRY: dust_length = 18; dust_color = 1; break;
+        case DFX_JUMP: dust_length = 12; break;
+        case DFX_SKID: dust_length = 21; break;
+        case DFX_DAMAGE_PUFF: case DFX_DAMAGE_PUFF_BIG:
+            dust_length = 18; break;
+        case DFX_WAVEDASH: dust_fx = DFX_DASH_TURN; dust_color = 1;
+        case DFX_DASH_TURN:
+            dust_length = 21; break;
+        case DFX_FAST_FALL: dust_length = 12; break;
+        case DFX_KO_SPARK: dust_length = 30; dust_color = 4; break;
+        case DFX_KO_LINES: dust_length = 30; dust_color = 1; break;
+        case DFX_KO_SLASH: dust_length = 25; dust_color = 1; break;
+        case DFX_KO_STAR:  dust_length = 35; break;
+        case DFX_WAVEDASH_INPLACE: dust_fx = DFX_LAND; dust_color = 1; break;
+        case DFX_WALLJUMP: dust_fx = DFX_LAND; draw_angle = -90 * dir; break;
+    }
 }
-var newdust = spawn_dust_fx(x,y,asset_get("empty_sprite"),dlen);
-newdust.dust_fx = dfx; //set the fx id
-if dfg != -1 newdust.fg_sprite = dfg; //set the foreground sprite
-newdust.dust_color = dust_color; //set the dust color
-if dir != 0 newdust.spr_dir = dir; //set the spr_dir
-newdust.draw_angle = dfa;
-return newdust;
+return dust;
+//#region Dust Effect Macros
+#macro DFX_LAND 0 
+#macro DFX_LAND_BIG 1
+#macro DFX_DOUBLE_JUMP 2
+#macro DFX_DASH_START 3
+#macro DFX_DASH 4
+#macro DFX_WALK 5
+#macro DFX_TECH 6
+#macro DFX_HIT_SURFACE 7 // landing after big hitstun and not bouncing
+#macro DFX_HIT_SURFACE_FG 8
+#macro DFX_PARRY 9
+#macro DFX_PARRY_BG_UNUSED 10 // This one is .. something.
+#macro DFX_JUMP 11
+#macro DFX_SKID 12 // I don't know when this one is used
+#macro DFX_DAMAGE_PUFF 13
+#macro DFX_DAMAGE_PUFF_BIG 14 // I don't know when this one is used
+#macro DFX_DASH_TURN 15
+#macro DFX_DOUBLE_JUMP_SMALL 16
+#macro DFX_FAST_FALL 17
+#macro DFX_HIT_SURFACE_SMALL 18 // landing after small hitstun and not bouncing
+#macro DFX_HIT_SURFACE_SMALL_FG 19
+#macro DFX_TECH_BIG 20
+#macro DFX_KO_SPARK 21
+#macro DFX_KO_LINES 22
+#macro DFX_KO_SLASH 23
+#macro DFX_KO_STAR 24
+// custom stuff for convenience
+#macro DFX_WAVEDASH 25 // Dash turn with a different color type
+#macro DFX_WAVEDASH_INPLACE 26 // Land with a different color type
+#macro DFX_WALLJUMP 27 // Rotated Land
+//#endregion
 ```
